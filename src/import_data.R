@@ -55,30 +55,31 @@ lapply(names(transilien_localisation_gare), function(item)
 {
   transilien_localisation_gare[[item]][
     is.na(transilien_localisation_gare[[item]]) |
-      transilien_localisation_gare[[item]] == ""
-    ] <<- "Undefined"
+    transilien_localisation_gare[[item]] == ""
+  ] <<- "Undefined"
 })
 
 lapply(names(transilien_incident_securite), function(item)
 {
   transilien_incident_securite[[item]][
     is.na(transilien_incident_securite[[item]]) |
-      transilien_incident_securite[[item]] == ""
-    ] <<- "Undefined"
+    transilien_incident_securite[[item]] == ""
+  ] <<- "Undefined"
 })
 
 lapply(names(transilien_trafic), function(item)
 {
   transilien_trafic[[item]][
     is.na(transilien_trafic[[item]]) |
-      transilien_trafic[[item]] == ""
-    ] <<- "Undefined"
+    transilien_trafic[[item]] == ""
+  ] <<- "Undefined"
 })
 
 #########################################
 ################ !CLEAN DATA ############
 #########################################
 
+source(paste0(getwd(), "/src/initialize_spark.R"))
 
 #########################################
 ################ SAVE DATA ##############
@@ -89,7 +90,11 @@ save(
   transilien_trafic,
   transilien_incident_securite,
   transilien_localisation_gare,
-  transilien_ligne_par_gare
+  transilien_ligne_par_gare,
+  df_transilien_ligne_par_gare,
+  df_transilien_localisation_gare,
+  df_transilien_incident_securite,
+  df_transilien_trafic
 )
 
 #########################################
