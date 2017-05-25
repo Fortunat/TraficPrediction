@@ -1,108 +1,9 @@
-###############################################
-################ GET ANNUAL TRAFIC ############
-###############################################
-
-trafic_2016 <- read.csv(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/trafic-annuel-entrant-par-station-du-reseau-ferre-2016.csv", 
-  header = TRUE,
-  sep = ";",
-  encoding="UTF-8"
-)
-trafic_2016$Column.12 <- NULL
-trafic_2016$Column.13 <- NULL
-trafic_2016$Column.14 <- NULL
-trafic_2016$Column.15 <- NULL
-
-trafic_2015 <- read.csv(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/trafic-annuel-entrant-par-station-du-reseau-ferre-2015.csv", 
-  header = TRUE,
-  sep = ";",
-  encoding="UTF-8"
-)
-
-trafic_2014 <- read.csv(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/trafic-annuel-entrant-par-station-du-reseau-ferre-2014.csv", 
-  header = TRUE,
-  sep = ";",
-  encoding="UTF-8"
-)
-
-trafic_2013 <- read.csv(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/trafic-annuel-entrant-par-station-du-reseau-ferre-2013.csv", 
-  header = TRUE,
-  sep = ";",
-  encoding="UTF-8"
-)
-
-###############################################
-################ !GET ANNUAL TRAFIC ###########
-###############################################
-
-
-###############################################
-################ GET RER A TRAFIC #############
-###############################################
-
-RER_A_stop_times <- read.table(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/RATP_GTFS_LINES/RATP_GTFS_RER_A/stop_times.txt", 
-  header = TRUE,
-  sep = ",",
-  encoding="UTF-8"
-)
-
-RER_A_stops <- read.table(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/RATP_GTFS_LINES/RATP_GTFS_RER_A/stops.txt", 
-  header = TRUE,
-  sep = ",",
-  encoding="UTF-8"
-)
-
-RER_A_routes <- read.table(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/RATP_GTFS_LINES/RATP_GTFS_RER_A/routes.txt", 
-  header = TRUE,
-  sep = ",",
-  encoding="UTF-8"
-)
-
-RER_A_transfers <- read.table(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/RATP_GTFS_LINES/RATP_GTFS_RER_A/transfers.txt", 
-  header = TRUE,
-  sep = ",",
-  encoding="UTF-8"
-)
-
-RER_A_trips <- read.table(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/RATP_GTFS_LINES/RATP_GTFS_RER_A/trips.txt", 
-  header = TRUE,
-  sep = ",",
-  encoding="UTF-8"
-)
-
-RER_A_calendar <- read.table(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/RATP_GTFS_LINES/RATP_GTFS_RER_A/calendar.txt", 
-  header = TRUE,
-  sep = ",",
-  encoding="UTF-8"
-)
-
-RER_A_calendar_dates <- read.table(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/RATP_GTFS_LINES/RATP_GTFS_RER_A/calendar_dates.txt", 
-  header = TRUE,
-  sep = ",",
-  encoding="UTF-8"
-)
-
-###############################################
-################ !GET RER A TRAFIC ############
-###############################################
-
-
 ####################################################
 ################ GET TRANSILIEN TRAFIC #############
 ####################################################
 
 transilien_trafic <- read.csv(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/comptage-voyageurs-trains-transilien.csv", 
+  file=paste0(getwd(),"/data/comptage-voyageurs-trains-transilien.csv"), 
   header = TRUE,
   sep = ";",
   encoding="UTF-8",
@@ -110,7 +11,7 @@ transilien_trafic <- read.csv(
 )
 
 transilien_incident_securite <- read.csv(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/incidents-securite.csv", 
+  file=paste0(getwd(),"/data/incidents-securite.csv"), 
   header = TRUE,
   sep = ";",
   encoding="UTF-8",
@@ -118,7 +19,7 @@ transilien_incident_securite <- read.csv(
 )
 
 transilien_localisation_gare <- read.csv(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/sncf-gares-et-arrets-transilien-ile-de-france.csv", 
+  file=paste0(getwd(),"/data/sncf-gares-et-arrets-transilien-ile-de-france.csv"), 
   header = TRUE,
   sep = ";",
   encoding="UTF-8",
@@ -126,7 +27,7 @@ transilien_localisation_gare <- read.csv(
 )
 
 transilien_ligne_par_gare <- read.csv(
-  file="C:/Users/Fortunat/Documents/EPITA_LINUX/Techno du web/Projet_Prediction/data/sncf-lignes-par-gares-idf.csv", 
+  file=paste0(getwd(),"/data/sncf-lignes-par-gares-idf.csv"), 
   header = TRUE,
   sep = ";",
   encoding="UTF-8",
@@ -176,4 +77,21 @@ lapply(names(transilien_trafic), function(item)
 
 #########################################
 ################ !CLEAN DATA ############
+#########################################
+
+
+#########################################
+################ SAVE DATA ##############
+#########################################
+
+save(
+  file=paste0(getwd(), "/.RData"),
+  transilien_trafic,
+  transilien_incident_securite,
+  transilien_localisation_gare,
+  transilien_ligne_par_gare
+)
+
+#########################################
+################ !SAVE DATA #############
 #########################################
