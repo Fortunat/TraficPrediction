@@ -27,6 +27,14 @@ transilien_regularite_transilien <- read.csv(
 ################ CLEAN DATA #############
 #########################################
 
+lapply(names(transilien_trafic), function(item)
+{
+  transilien_trafic[[item]][
+    is.na(transilien_trafic[[item]]) |
+      transilien_trafic[[item]] == ""
+    ] <<- "Undefined"
+})
+
 lapply(names(transilien_regularite_transilien), function(item)
 {
   transilien_regularite_transilien[[item]][
