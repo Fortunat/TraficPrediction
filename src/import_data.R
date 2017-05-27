@@ -223,7 +223,33 @@ lapply(names(transilien_trafic), function(item)
 ################ !CLEAN DATA ############
 #########################################
 
+
+############################################
+################ PREPARE DATA ##############
+############################################
+
+# transilien_regularite_transilien et transilien_trafic UTILE POUR LA PREDICTION
+
+#ADD FEATURE FOR TRANSILIEN_TRAFIC
+transilien_trafic$Date.de.comptage <- as.Date( transilien_trafic$Date.de.comptage, '%Y-%m-%d')
+transilien_trafic$Date <- format(transilien_trafic$Date.de.comptage, '%Y-%m')
+
+#MERGE TRANSILIEN_REGULARITE_TRANSILIEN AND TRANSILIEN_TRAFIC
+merged_transilien_trafic <- merge(
+  x=transilien_regularite_transilien,
+  y=transilien_trafic,
+  by = c("Ligne", "Date"),
+  all.y = TRUE
+)
+
+############################################
+################ !PREPARE DATA #############
+############################################
+
+
+#CALL SPARK SCRIPT
 source(paste0(getwd(), "/src/initialize_spark.R"))
+
 
 #########################################
 ################ SAVE DATA ##############
