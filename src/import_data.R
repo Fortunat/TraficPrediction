@@ -57,6 +57,8 @@ lapply(names(transilien_regularite_transilien), function(item)
 # ADD FEATURE FOR TRANSILIEN_TRAFIC
 transilien_trafic$Date.de.comptage <- as.Date( transilien_trafic$Date.de.comptage, '%Y-%m-%d')
 transilien_trafic$Date <- format(transilien_trafic$Date.de.comptage, '%Y-%m')
+transilien_trafic$Year <- format(transilien_trafic$Date.de.comptage, '%Y')
+# transilien_trafic$Year <- as.character(transilien_trafic$Year)
 
 #MERGE TRANSILIEN_REGULARITE_TRANSILIEN AND TRANSILIEN_TRAFIC
 merged_transilien_trafic <- merge(
@@ -117,6 +119,8 @@ merged_transilien_trafic.train <- merged_transilien_trafic[
     "Type.jour",
     "Date.de.comptage",
     "Tranche.horaire",
+    "Nom.de.la.ligne",
+    "Montants",
     "Intensite"
   )
 ]
@@ -129,6 +133,8 @@ merged_transilien_trafic.test <- merged_transilien_trafic[
     "Type.jour",
     "Date.de.comptage",
     "Tranche.horaire",
+    "Nom.de.la.ligne",
+    "Montants",
     "Intensite"
   )
 ]
