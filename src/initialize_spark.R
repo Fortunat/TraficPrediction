@@ -23,7 +23,6 @@ model <- SparkR::spark.logit(df_merged_transilien_trafic.train, Intensite ~ ., r
 
 #PREDICT
 prediction <- SparkR::predict(model, newData = df_merged_transilien_trafic.test)
-SparkR::showDF(SparkR::select(prediction,c('Intensite','Nom_gare', 'Type_jour', 'Tranche_horaire','rawPrediction','probability','prediction')),100)
 #!PREDICT
 
 #ANALYSE RESULT
@@ -35,7 +34,7 @@ error_rate <- 1-sum(diag(confusion_table))/sum(confusion_table)
 
 #DISPLAY RESULT
 print("RESULT:")
-print(nrow(prediction))
+SparkR::showDF(SparkR::select(prediction,c('Intensite','Nom_gare', 'Type_jour', 'Tranche_horaire','rawPrediction','probability','prediction')),100)
 print("")
 
 print("MATRIX:")
